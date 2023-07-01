@@ -10,9 +10,8 @@ class Game {
       this.player = new Veneno(this.ctx, 10, this.canvas.height);
       this.berenjenas = [];
       this.enemies = [];
-      this.fumes = [];
-      this.flies= new birdsGrey(this.ctx, 10, this.canvas.height);
-      this.props = new birdsBlack(this.ctx, 10, this.canvas.height);
+      this.flies= []
+      this.props = [];
       this.tickEnemy = 0;
       this.limitEnemy =  Math.floor(Math.random() * 100);
     }
@@ -40,7 +39,7 @@ class Game {
           if (this.tickEnemy > this.limitEnemy) {
             this.addEnemy("PUTERO");
             this.tickEnemy = 0;
-            this.limitEnemy =  Math.floor(Math.random() * 100);
+            this.limitEnemy =  Math.floor(Math.random() * 200);
           }
         }, 1000 / this.framesPerSecond);
         }
@@ -59,8 +58,6 @@ class Game {
         if (colx && coly) {
           this.gameOver();
           this.enemies.splice(1);
-          this.enemies.push(new birdsGrey(this.ctx, 10, this.canvas.height))
-      
         }
       });
     } 
@@ -68,7 +65,8 @@ class Game {
     checkCollisionShoot() {
       this.enemies.forEach((enemy) => { 
         if (this.player.collisionEnemy(enemy)) {
-            enemy.loseLife();         
+            enemy.loseLife(); 
+            this.addEnemy("PAJARO")        
         }
       });
     } 
@@ -78,6 +76,9 @@ class Game {
         case "PUTERO":
           this.enemies.push(new Homofobo(this.ctx, this.canvas.width, this.canvas.height));
         break;
+        case "PAJARO":
+          this.flies.push(new birdsGrey(this.ctx, 10, this.canvas.height))
+          break;
        }
     }
   
@@ -97,23 +98,21 @@ class Game {
       this.background.move();
       this.player.move();
       this.enemies.forEach((enemy) => enemy.move());
-      this.props.move();
-      this.flies.move();
+  
+      this.flies.forEach((flie) => flie.move());
     }
   
     draw() {
       this.background.draw();
       this.player.draw();
       this.enemies.forEach((enemy) => enemy.draw());
-      this.props.draw();
-      this.flies.draw();
+      this.flies.forEach((flie) => flie.draw());
+      
     }
 
     restart() {
       this.clear();
       this.enemies = [];
-      this.flies= new birdsGrey(this.ctx, 10, this.canvas.height);
-      this.props = new birdsBlack(this.ctx, 10, this.canvas.height);
       this.player = new Veneno(this.ctx, 10, this.canvas.height);
       this.tickEnemy = 0;
       this.limitEnemy = Math.floor(Math.random() * 100);
