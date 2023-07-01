@@ -37,10 +37,10 @@ class Game {
           this.checkCollisionPlayer();
           this.checkCollisionShoot();
           this.tickEnemy++;
-          if (this.tickEnemy % 80 == 0) {
-
+          if (this.tickEnemy > this.limitEnemy) {
             this.addEnemy("PUTERO");
-           
+            this.tickEnemy = 0;
+            this.limitEnemy =  Math.floor(Math.random() * 100);
           }
         }, 1000 / this.framesPerSecond);
         }
@@ -59,8 +59,8 @@ class Game {
         if (colx && coly) {
           this.gameOver();
           this.enemies.splice(1);
-          const newFume = new Fumes(this.ctx, enemy.x + enemy.width, enemy.y + enemy.height / 2);
-          newFume.draw();
+          this.enemies.push(new birdsGrey(this.ctx, 10, this.canvas.height))
+      
         }
       });
     } 
