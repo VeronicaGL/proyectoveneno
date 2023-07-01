@@ -1,20 +1,20 @@
-class Berenjena {
+class Fumes{
     constructor (ctx, x, y) {
         this.ctx = ctx;
         this.x = x;
         this.y = y - 40;
         this.width = 60;
         this.height = 60;
-        this.vx = 2;
+        this.vx = 0;
         this.vy = 0; 
         this.ax = 0;
         this.ay = 0;
         this.impact = false;
         this.image = new Image();
-        this.image.src = "/assets/images/characters/weapons/berenjenamove.png";
+        this.image.src = "/assets/images/characters/weapons/fumemove.png";
         this.image.verticalFrames = 1;
         this.image.verticalFrameIndex = 0;
-        this.image.horizontalFrames = 4;  
+        this.image.horizontalFrames = 2;  
         this.image.horizontalFrameIndex = 0;
         this.image.onload = () => {
             this.image.isReady = true;
@@ -24,7 +24,6 @@ class Berenjena {
         
         this.animationTick = 0;
     }
-
     draw() {
         if (this.image.isReady) {
             this.ctx.drawImage(
@@ -36,16 +35,10 @@ class Berenjena {
               this.x,
               this.y,
               this.width,
-              this.height,
-              this.smoke
+              this.height
             )};
             this.animate();
     } 
-    
-    hasImpact() {
-      this.impact = true; 
-    }
-    
     move() { 
         this.vx += this.ax;
         this.vy += this.ay;
@@ -56,7 +49,7 @@ class Berenjena {
     animate() {
         this.animationTick++;
       
-        if (this.animationTick > 4) {
+        if (this.animationTick > 2) {
           this.animationTick = 0; 
           this.image.horizontalFrameIndex++
       
@@ -69,11 +62,5 @@ class Berenjena {
           }
         }
 
-    isVisible() {   
-      const isTrue = this.x + this.width > 0 && this.isPop;
-       return isTrue
-    }       
 
-
-}
-    
+}    

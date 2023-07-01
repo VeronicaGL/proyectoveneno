@@ -13,7 +13,7 @@ class Veneno {
 
     this.animationTick = 0;
     this.berenjenas = [];
-      
+   
     this.image = new Image();
     this.image.src = "/assets/images/characters/la-veneno/movement.png";
     this.image.verticalFrames = 1; 
