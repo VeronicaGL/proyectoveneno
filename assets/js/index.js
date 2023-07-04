@@ -8,7 +8,3 @@ window.addEventListener("keyup", (event) => {game.onKeyUp(event)});
 document.getElementById("start").onclick = () => {
   game.start();
 };
-
-document.getElementById("stop").addEventListener("click", () => {
-  game.stop();
-});

@@ -12,4 +12,4 @@ const VENENO_SHOOT = 10;
 
 const BACKGROUND_SPEED = -2;
 
-const FLOOR_POSITION = 190;
+const FLOOR_POSITION = 175;

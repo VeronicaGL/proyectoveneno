@@ -4,8 +4,8 @@ class Veneno {
     this.y0 = y - FLOOR_POSITION;
     this.x = -5;
     this.y = y;
-    this.width = 70;
-    this.height = 112;
+    this.width = 85;
+    this.height = 130;
     this.vy = 0;
     this.vx = 0;
     this.ay = VENENO_AY;
@@ -47,7 +47,6 @@ class Veneno {
 
         if (colX && colY) {
           berenjena.hasImpact();
-          this.berenjenas.splice(1);
         }
 
         return colX && colY;

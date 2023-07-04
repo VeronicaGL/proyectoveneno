@@ -2,10 +2,10 @@ class Berenjena {
     constructor (ctx, x, y) {
         this.ctx = ctx;
         this.x = x;
-        this.y = y - 40;
-        this.width = 60;
-        this.height = 60;
-        this.vx = 2;
+        this.y = y -40;
+        this.width = 35;
+        this.height = 35;
+        this.vx = 3;
         this.vy = 0; 
         this.ax = 0;
         this.ay = 0;
@@ -70,7 +70,7 @@ class Berenjena {
         }
 
     isVisible() {   
-      const isTrue = this.x + this.width > 0 && this.isPop;
+      const isTrue = this.x <= this.ctx.canvas.width;
        return isTrue
     }       
 
