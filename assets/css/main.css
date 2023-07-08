@@ -1,11 +1,7 @@
-#game-veneno{
-    border: 5px solid black;
-    position: absolute;
-    top: 100px;
-    left: 200px;
-    background-image: url(../images/background-forest.png);
-    background-size: cover;
-    background-repeat: no-repeat;     
+html,
+body {
+    width: 100%;
+    height: 100%;
 }
 body {
     position: relative;
@@ -13,12 +9,53 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
-.buttonsStartStop {
+
+.game {
     display: flex;
     justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
-.buttonsMusic {
+
+.game-panel {
+    position: relative;
     display: flex;
     justify-content: center;
-    
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
+
+.game-panel .panel-actions .panel-winner .panel-gameover {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8%;
+    min-width: 30px;
+    padding: 5px 10px;
+    margin-left: 35%;    
+}
+
+#btn-start {   
+    font-weight: bold;
+    font-family: Calibri;
+    border-bottom-color: #b91d1d;
+    box-shadow: 5px 5px 3px #7b0303;
+    outline: none; 
+    cursor: pointer;
+    transition: all 0.6s ease;
+    border-radius: 10px;
+    border: solid #ff002f;
+    background: #ff0000;
+    padding: 5px; 
+    width: 150px; 
+    height: 30px;
+    color: white;  
+}
+
+.hidden {
+    display: none;
+}
+

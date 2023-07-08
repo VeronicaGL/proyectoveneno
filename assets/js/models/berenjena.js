@@ -3,7 +3,7 @@ class Berenjena {
         this.ctx = ctx;
         this.x = x;
         this.y = y -40;
-        this.width = 35;
+        this.width = 30;
         this.height = 35;
         this.vx = 3;
         this.vy = 0; 

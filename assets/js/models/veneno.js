@@ -9,7 +9,7 @@ class Veneno {
     this.vy = 0;
     this.vx = 0;
     this.ay = VENENO_AY;
-    this.life = 5;
+    this.life = 8;
 
     this.animationTick = 0;
     this.berenjenas = [];

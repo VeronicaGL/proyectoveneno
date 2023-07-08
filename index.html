@@ -1,46 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE GAME LA VENENO</title>
-    <link rel="stylesheet" href="/assets/css/main.css">
-  </head>
-  <body onload="playMusic()"> 
-      
-      <canvas id="game-veneno" width="850" height="390"></canvas>
-    <div class="buttonsStartStop">
-      <button id="start">START</button>
-      <button id="stop">STOP</button>
-    </div>  
-    <div class="buttonsMusic">  
-      <button onclick="playMusic()">Reproducir música</button>
-      <button onclick="pauseMusic()">Pausar música</button>
-    </div>  
-      <script>
-        const audio = new Audio("/assets/mp3/song-venenopatupiel.mp3");
-        function playMusic() {
-          audio.play();
-          adjustVolume(0.2);
-        }
-        function adjustVolume(volume) {
-          audio.volume = volume;
-        }
-        function pauseMusic() {
-          const audio = document.getElementsByTagName('audio')[0];
-        audio.pause();
-        }
-    </script>
-    <script src="/assets/js/constant.js"></script>
-    <script src="/assets/js/models/background.js"></script>
-    <script src="/assets/js/models/birds-grey.js"></script>
-    <script src="/assets/js/models/birds-black.js"></script>
-    <script src="/assets/js/models/veneno.js"></script>
-    <script src="/assets/js/models/homofobo.js"></script>
-    <script src="/assets/js/models/fume.js"></script> 
-    <script src="/assets/js/models/berenjena.js"></script>
-    <script src="/assets/js/models/vaccine.js"></script>  
-    <script src="/assets/js/models/game.js"></script> 
-    <script src="/assets/js/index.js"></script>  
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE GAME LA VENENO</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+  <div class="game">
+    <div class="game-panel init-panel">
+      <img src="/assets/images/inicio/inicio.gif" width="750" height="390">
+      <div class="panel-actions">
+        <button id="btn-start">START</button>
+      </div>
+    </div>
+    <canvas id="game-veneno" width="750" height="390" class="hidden"></canvas>
+  </div> 
+  <div class="buttonsMusic">
+    <button onclick="playMusic()">Reproducir música</button>
+    <button onclick="pauseMusic()">Pausar música</button>
+  </div>
+  <script src="/assets/js/constant.js"></script>
+  <script src="/assets/js/models/background-inicio.js"></script>
+  <script src="/assets/js/models/background.js"></script>
+  <script src="/assets/js/models/background-winner.js"></script>
+  <script src="/assets/js/models/background-gameover.js"></script>
+  <script src="/assets/js/models/birds-grey.js"></script>
+  <script src="/assets/js/models/birds-black.js"></script>
+  <script src="/assets/js/models/veneno.js"></script>
+  <script src="/assets/js/models/homofobo.js"></script>
+  <script src="/assets/js/models/fume.js"></script>
+  <script src="/assets/js/models/berenjena.js"></script>
+  <script src="/assets/js/models/vaccine.js"></script>
+  <script src="/assets/js/models/game.js"></script>
+  <script src="/assets/js/index.js"></script>
+</body>
 </html>

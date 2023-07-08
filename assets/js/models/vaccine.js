@@ -1,10 +1,10 @@
 class Vaccine {
     constructor (ctx, x, y) {
         this.ctx = ctx;
-        this.x = x;
-        this.y = y -45;
-        this.width = 60;
-        this.height = 10;
+        this.x = x -2;
+        this.y = y -35;
+        this.width = 35;
+        this.height = 7;
         this.vx = -3;
         this.vy = 0; 
         this.ax = 0;
