@@ -101,7 +101,7 @@ class Game {
         
         if (this.player.life <= 0 || this.endGame) {
           this.gameOver();
-        } else if (this.player.score >= 100 || this.endGame) {
+        } else if (this.score >= 100 || this.endGame) {
           this.winner();
           }
 
@@ -226,7 +226,7 @@ class Game {
         prop.draw();
       }); 
     }
-    if (this.player.score >= 100) {
+    if (this.score >= 100 || this.endGame) {
       this.backgroundWinner.draw();
     } else {
       this.background.draw();
