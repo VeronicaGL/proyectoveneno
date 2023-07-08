@@ -9,12 +9,14 @@
 <body>
   <div class="game">
     <div class="game-panel init-panel">
-      <img src="/assets/images/inicio/inicio.gif" width="750" height="390">
+      <img src="/assets/images/inicio/inicio.gif" width="750" height="390" />
       <div class="panel-actions">
         <button id="btn-start">START</button>
       </div>
     </div>
     <canvas id="game-veneno" width="750" height="390" class="hidden"></canvas>
+    <img id="game-over" src="/assets/images/gameover.gif" width="750" height="390" class="hidden" />
+    <img id="game-winner" src="/assets/images/winner.gif" width="750" height="390" class="hidden" />
   </div> 
   <div class="buttonsMusic">
     <button onclick="playMusic()">Reproducir música</button>
@@ -23,8 +25,6 @@
   <script src="/assets/js/constant.js"></script>
   <script src="/assets/js/models/background-inicio.js"></script>
   <script src="/assets/js/models/background.js"></script>
-  <script src="/assets/js/models/background-winner.js"></script>
-  <script src="/assets/js/models/background-gameover.js"></script>
   <script src="/assets/js/models/birds-grey.js"></script>
   <script src="/assets/js/models/birds-black.js"></script>
   <script src="/assets/js/models/veneno.js"></script>

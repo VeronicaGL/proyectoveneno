@@ -7,8 +7,6 @@ class Game {
     this.framesPerSecond = 60;
 
     this.background = new Background(this.ctx);
-    this.backgroundGameOver = new BackgroundGameOver(this.ctx);
-    this.backgroundWinner = new BackgroundWinner(this.ctx);
     this.player = new Veneno(this.ctx, 10, this.canvas.height);
     this.enemies = [];
     this.flies = [];
@@ -129,7 +127,7 @@ class Game {
       const enemy = this.enemies[i];
       if (this.player.collisionEnemy(enemy)) {
         enemy.loseLife();
-        this.score += 100;
+        this.score += 10;
       }
     }
   }
@@ -220,7 +218,8 @@ class Game {
   }
 
   gameOver() {
-    this.backgroundGameOver.draw();
+    document.getElementById("game-veneno").classList.add("hidden");
+    document.getElementById("game-over").classList.remove("hidden")
     this.stop();
     setTimeout(() => {  
       this.restart();
@@ -228,7 +227,8 @@ class Game {
   }
 
   winner() {
-    this.backgroundWinner.draw();
+    document.getElementById("game-veneno").classList.add("hidden");
+    document.getElementById("game-winner").classList.remove("hidden");
     this.stop();
     setTimeout(() => {   
       this.restart();
