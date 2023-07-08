@@ -210,10 +210,7 @@ class Game {
     });
   }
 
-  draw() {
-    if (this.player.life <= 0 || this.endGame) {
-      this.backgroundGameOver.draw();
-    } else {
+  draw() { 
       this.background.draw();
       this.player.draw();
       this.enemies.forEach((enemy) => {
@@ -225,37 +222,22 @@ class Game {
       this.props.forEach((prop) => {
         prop.draw();
       }); 
-    }
-    if (this.score >= 100 || this.endGame) {
-      this.backgroundWinner.draw();
-    } else {
-      this.background.draw();
-      this.player.draw();
-      this.enemies.forEach((enemy) => {
-        enemy.draw();
-      });
-      this.flies.forEach((fly) => {
-        fly.draw();
-      });
-      this.props.forEach((prop) => {
-        prop.draw();
-      }); 
-      }
-    
   }
 
   gameOver() {
-    /*setTimeout(() => {
-      this.stop();
+    this.backgroundGameOver.draw();
+    this.stop();
+    setTimeout(() => {  
       this.restart();
-    }, 5000)*/
+    }, 5000)
   }
 
   winner() {
-    setTimeout(() => {
-      this.stop();
+    this.backgroundWinner.draw();
+    this.stop();
+    setTimeout(() => {   
       this.restart();
-    }, 2000) 
+    }, 5000) 
   }
 
   restart() {
