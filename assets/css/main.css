@@ -26,6 +26,9 @@ body {
     width: 100%;
     height: 100%;
 }
+.panel-actions {
+    position:absolute;
+}
 
 .game-panel .panel-actions .panel-winner .panel-gameover {
     position: absolute;
@@ -53,6 +56,8 @@ body {
     width: 150px; 
     height: 30px;
     color: white;  
+    margin-left: 500px;
+    margin-top: 50px;
 }
 
 .hidden {

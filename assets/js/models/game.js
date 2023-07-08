@@ -74,16 +74,11 @@ class Game {
           this.tickFlies++;
           this.tickProps++;
         }
-        
-
-        //5 110 215 320 
-
         if (this.tickEnemy > this.limitEnemy) {
           this.addEnemy("PUTERO");
           this.tickEnemy = 0;
           this.limitEnemy = Math.floor(Math.random() * 200);
         }
-
         if (this.tickFlies > this.limitFly) {
           this.addFly("PALOMAGREY");
           this.tickFlies = 0;
