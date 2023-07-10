@@ -8,6 +8,7 @@ class Game {
 
     this.background = new Background(this.ctx);
     this.player = new Veneno(this.ctx, 10, this.canvas.height);
+    this.boss = new Homofomaster(this.ctx, this.canvas.width, this.canvas.height);
     this.enemies = [];
     this.flies = [];
     this.props = [];
@@ -19,12 +20,14 @@ class Game {
     this.limitFly = Math.floor(Math.random() * 1000);
     this.limitProp = Math.floor(Math.random() * 1000);
 
-    this.score = 0;
+    this.score = 15;
+    this.tickScores = 0;
     this.endGame = false;
+
+    this.enterBoss = false;
 
     this.onKeyDown = this.onKeyDown.bind(this);
     this.onKeyUp = this.onKeyUp.bind(this);
-
 
     this.imageLife = new Image();
     this.imageLife.src = "/assets/images/heart.png";
@@ -49,31 +52,34 @@ class Game {
         this.move();
         this.draw();
         this.ctx.save();
-        
+       
         for (let i = 0; i < this.player.life; i++) {
           this.ctx.fillStyle = "red";
           this.ctx.drawImage(this.imageLife, 5 + 30 * i, 5, 35, 35);
         }
-        
-        this.ctx.font = "bold 15px verdana";
-        this.ctx.fillStyle = "white";
-        this.ctx.fillText(`Score: ${this.score.toString().padStart(4, "0")}`, this.canvas.width - 120, 30, 150);
+
         this.ctx.restore();
         this.clearEnemy();
         this.clearBerenjenas();
         this.clearVaccines();
-        console.log(this.endGame);
+        this.clearCensored();
+
         if (!this.endGame) {
           this.checkCollisionPlayer();
           this.checkCollisionShootBerenjena();
           this.checkCollisionShootVaccine();
+          this.checkCollisionShootCensored();
           this.tickEnemy++;
           this.tickEnemyShoot++;
           this.tickFlies++;
           this.tickProps++;
+          this.tickScores++;
         }
         if (this.tickEnemy > this.limitEnemy) {
-          this.addEnemy("PUTERO");
+          if (!this.enterBoss) {
+            //this.addEnemy("PUTERO");
+          }
+          
           this.tickEnemy = 0;
           this.limitEnemy = Math.floor(Math.random() * 200);
         }
@@ -89,19 +95,30 @@ class Game {
         }
         if (this.tickEnemyShoot > 20) {
           this.tickEnemyShoot = 0;
-          this.enemies.forEach(enemy => this.enemyShoot(enemy))
+          if (!this.enterBoss) {
+            this.enemies.forEach(enemy => this.enemyShoot(enemy))
+          } else {
+            this.bossShot();
+          }
+          
         }
         
         if (this.player.life <= 0 || this.endGame) {
           this.gameOver();
-        } else if (this.score >= 100 || this.endGame) {
+
+        }
+        
+        if (this.score >= 20 && !this.enterBoss) {
+          this.enterBoss = true; 
+        } else if (this.boss.life <= 0) {
+          this.score += 100;
           this.winner();
-          }
+        }
 
       }, 1000 / this.framesPerSecond);
     }
   }
-
+  
   stop() {
     clearInterval(this.intervalId);
     this.intervalId = null;
@@ -119,7 +136,7 @@ class Game {
       if (colx && coly) {
         this.endGame = true;
       }
-    });
+     });
   }
 
   checkCollisionShootBerenjena() {
@@ -127,6 +144,12 @@ class Game {
       const enemy = this.enemies[i];
       if (this.player.collisionEnemy(enemy)) {
         enemy.loseLife();
+        this.score += 5;
+      }
+    }
+    if (this.enterBoss) {
+      if (this.player.collisionEnemy(this.boss)) {
+        this.boss.loseLife();
         this.score += 10;
       }
     }
@@ -139,6 +162,11 @@ class Game {
       }
     })
   }
+  checkCollisionShootCensored() {
+      if (this.boss.collisionCensoredPlayer(this.player)) {
+        this.player.loseLife();
+      }
+  }
 
   addEnemy(typeEnemy) {
     switch (typeEnemy) {
@@ -147,13 +175,23 @@ class Game {
           new Homofobo(this.ctx, this.canvas.width, this.canvas.height)
         );
         break;
+      case "BOSS":
+        new Homofomaster(this.ctx, this.canvas.width, this.canvas.height)
+        break;
     }
   }
-
+ 
   enemyShoot(enemy) {
     const canShoot = Math.floor(Math.random() * 10) % 5 === 0;
     if (canShoot) {
       enemy.shoot()
+    }
+  }
+
+  bossShot() {
+    const canShoot = Math.floor(Math.random() * 10) % 5 === 0;
+    if (canShoot) {
+      this.boss.shoot()
     }
   }
 
@@ -188,10 +226,19 @@ class Game {
   clearVaccines() {
     this.enemies.forEach(enemy => enemy.clearVaccines());
   }
+  clearCensored() {
+    this.boss.censoredes = this.boss.censoredes.filter(
+      (censored) => censored.isVisible() && !censored.impact
+    );
+  }
 
   move() {
     this.background.move();
     this.player.move();
+    if (this.enterBoss){
+      this.boss.move();
+    }
+    
     this.enemies.forEach((enemy) => {
       enemy.move();
     });
@@ -201,11 +248,17 @@ class Game {
     this.props.forEach((prop) => {
       prop.move();
     });
+
   }
 
   draw() { 
       this.background.draw();
+      this.drawScore() 
       this.player.draw();
+      if (this.enterBoss) {
+        this.boss.draw();
+      }
+      
       this.enemies.forEach((enemy) => {
         enemy.draw();
       });
@@ -214,7 +267,16 @@ class Game {
       });
       this.props.forEach((prop) => {
         prop.draw();
-      }); 
+      });
+
+  }
+
+  drawScore() {
+    this.ctx.save();
+    this.ctx.fillStyle ="white";
+    this.ctx.font = "35px digital-veneno";
+    this.ctx.fillText(`SCORE: ${this.score.toString().padStart(5, "0")}`, this.ctx.canvas.width - 150, 45, 100);
+    this.ctx.restore();
   }
 
   gameOver() {
@@ -243,4 +305,4 @@ class Game {
     this.stop();
   }
 
-} 
+}

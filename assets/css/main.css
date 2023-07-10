@@ -1,21 +1,34 @@
+@font-face {
+    font-family: "digital-veneno";
+    src: url("digital-7.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 html,
 body {
     width: 100%;
     height: 100%;
 }
+
 body {
     position: relative;
     background: url(../images/background-laveneno.png);
     background-repeat: no-repeat;
     background-size: cover;
+    width: 90%;
+    height: 80%;
+    margin-top: 5%;
 }
 
 .game {
     display: flex;
     justify-content: center;
+
     align-items: center;
-    width: 100%;
-    height: 100%;
+    margin-top: 5%;
+    width: 90%;
+    height: 110%;
 }
 
 .game-panel {
@@ -23,9 +36,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
 }
+
 .panel-actions {
     position:absolute;
 }
@@ -34,11 +46,7 @@ body {
     position: absolute;
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-top: 8%;
-    min-width: 30px;
-    padding: 5px 10px;
-    margin-left: 35%;    
+    justify-content: center;   
 }
 
 #btn-start {   
@@ -54,10 +62,22 @@ body {
     background: #ff0000;
     padding: 5px; 
     width: 150px; 
-    height: 30px;
     color: white;  
-    margin-left: 500px;
-    margin-top: 50px;
+    margin-left: 150%;
+    margin-top: 50%;
+}
+.buttonsMusic {
+    border: solid #000000;
+    background-color: #3d3b3b;
+    background: #3d3b3b;
+    font-family: Calibri;
+    border: 30px;
+    text-align: center;
+    display: flex;
+    cursor: pointer; 
+    margin-top: -50%;
+    margin-right: -10%;
+    padding: 10px;
 }
 
 .hidden {

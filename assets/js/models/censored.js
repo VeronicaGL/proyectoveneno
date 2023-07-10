@@ -1,20 +1,20 @@
-class Fumes{
+class Censored {
     constructor (ctx, x, y) {
         this.ctx = ctx;
-        this.x = x;
-        this.y = y - 40;
-        this.width = 60;
-        this.height = 60;
-        this.vx = 0;
+        this.x = x -2;
+        this.y = y -30;
+        this.width = 100;
+        this.height = 80;
+        this.vx = -1;
         this.vy = 0; 
         this.ax = 0;
-        this.ay = 0;
+        this.ay = 0
         this.impact = false;
         this.image = new Image();
-        this.image.src = "/assets/images/characters/weapons/fumemove.png";
+        this.image.src = "/assets/images/characters/weapons/censored.png";
         this.image.verticalFrames = 1;
         this.image.verticalFrameIndex = 0;
-        this.image.horizontalFrames = 2;  
+        this.image.horizontalFrames = 4;  
         this.image.horizontalFrameIndex = 0;
         this.image.onload = () => {
             this.image.isReady = true;
@@ -24,6 +24,7 @@ class Fumes{
         
         this.animationTick = 0;
     }
+
     draw() {
         if (this.image.isReady) {
             this.ctx.drawImage(
@@ -35,21 +36,24 @@ class Fumes{
               this.x,
               this.y,
               this.width,
-              this.height
+              this.height,
             )};
             this.animate();
     } 
+    
+    hasImpact() {
+      this.impact = true; 
+    }
+    
     move() { 
         this.vx += this.ax;
-        this.vy += this.ay;
-        this.x += this.vx;
-        this.y += this.vy;   
+        this.x += this.vx; 
     }
 
     animate() {
         this.animationTick++;
       
-        if (this.animationTick > 2) {
+        if (this.animationTick > 4) {
           this.animationTick = 0; 
           this.image.horizontalFrameIndex++
       
@@ -57,10 +61,13 @@ class Fumes{
             this.image.horizontalFrameIndex = 0;
             }
           }
-          if (this.impact){
-            
-          }
         }
 
+    isVisible() {   
+      const isTrue = this.x + this.width > 0;
+       return isTrue
+    }       
 
-}    
+
+}
+    
