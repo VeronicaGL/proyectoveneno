@@ -20,7 +20,7 @@ class Game {
     this.limitFly = Math.floor(Math.random() * 1000);
     this.limitProp = Math.floor(Math.random() * 1000);
 
-    this.score = 15;
+    this.score = 0;
     this.tickScores = 0;
     this.endGame = false;
 
@@ -77,7 +77,7 @@ class Game {
         }
         if (this.tickEnemy > this.limitEnemy) {
           if (!this.enterBoss) {
-            //this.addEnemy("PUTERO");
+            this.addEnemy("PUTERO");
           }
           
           this.tickEnemy = 0;
@@ -274,8 +274,8 @@ class Game {
   drawScore() {
     this.ctx.save();
     this.ctx.fillStyle ="white";
-    this.ctx.font = "35px digital-veneno";
-    this.ctx.fillText(`SCORE: ${this.score.toString().padStart(5, "0")}`, this.ctx.canvas.width - 150, 45, 100);
+    this.ctx.font = "45px digital-veneno";
+    this.ctx.fillText(`SCORE: ${this.score.toString().padStart(5, "0")}`, this.ctx.canvas.width - 140, 55, 120);
     this.ctx.restore();
   }
 

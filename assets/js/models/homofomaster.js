@@ -2,9 +2,9 @@ class Homofomaster {
     constructor(ctx, x, y) {
       this.ctx = ctx;
       this.x = x;
-      this.y = y - FLOOR_POSITION;
+      this.y = y - FLOOR_POSITION -15;
       this.width = 150;
-      this.height = 130;
+      this.height = 150;
       this.vx = -1;
       this.life = 10;
       
@@ -15,7 +15,7 @@ class Homofomaster {
       this.image.src = "/assets/images/characters/homofomaster/homofomaster.png";
       this.image.verticalFrames = 1; 
       this.image.verticalFrameIndex = 0;
-      this.image.horizontalFrames = 4;
+      this.image.horizontalFrames = 3;
       this.image.horizontalFrameIndex = 0;
       this.image.onload = () => {
         this.image.isReady = true;
@@ -47,7 +47,6 @@ class Homofomaster {
           }
           return colX && colY;
         })
-    
     }
 
     isShooting() {
@@ -94,7 +93,7 @@ class Homofomaster {
         this.animationTick++;
     
         if (this.isShooting()) {
-            this.image.horizontalFrameIndex = 1;
+            this.image.horizontalFrameIndex = 3;
           } else if (this.animationTick > VENENO_RAN_ANIMATION_TICK) {
             this.animationTick = 0; 
             this.image.horizontalFrameIndex++
@@ -103,7 +102,7 @@ class Homofomaster {
             censored.move();
           });
 
-        if (this.image.horizontalFrameIndex > this.image.horizontalFrames - 3) {
+        if (this.image.horizontalFrameIndex > this.image.horizontalFrames - 1) {
             this.image.horizontalFrameIndex = 0;
         }
     }
